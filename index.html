@@ -119,21 +119,34 @@ body { font-family: var(--font-sans); background: #fff; color: #222; line-height
   <h1>University of Chicago — Instructor AI Competencies</h1>
 </header>
 
+<!-- MAP VIEW -->
 <div id="view-map" class="view active">
   <div class="page-header">
-  <h2>Instructor AI Competency Map</h2>
-  <p style="margin-bottom: 0.75rem;">Click any domain to expand its skill progression, then select a skill to view details.</p>
-  <p style="color: rgba(255,255,255,0.85); margin-bottom: 0.4rem;">
-    <span style="font-weight:700; color:#EAAA00;">Beginner</span> skills are designed to prompt instructors to start thinking about their strategy for AI use in the context of the broader teaching skill. Activities in beginner skills focus on exploration, reflection, and goal setting for the use of AI in instructional settings.
-  </p>
-  <p style="color: rgba(255,255,255,0.85); margin-bottom: 0.4rem;">
-    <span style="font-weight:700; color:#7ecae3;">Intermediate</span> skills are focused on developing instructor competence in AI use in one or two specific areas of focus within the broader skill. Activities include using AI to complete a teaching task thoughtfully and with full awareness of the benefits and potential pitfalls for that specific use.
-  </p>
-  <p style="color: rgba(255,255,255,0.85);">
-    <span style="font-weight:700; color:#b5d08a;">Advanced</span> skills mark the full integration of AI into the instructor's teaching repertoire. These activities focus on helping the instructor cultivate a practice of using AI strategically to improve teaching and learning in their classes.
-  </p>
-</div>
+    <h2>Instructor AI Competency Map</h2>
+    <p style="margin-bottom: 0.75rem;">Click any domain to expand its skill progression, then select a skill to view details.</p>
+    <p style="color: rgba(255,255,255,0.85); margin-bottom: 0.4rem;">
+      <span style="font-weight:700; color:#EAAA00;">Beginner</span> skills are designed to prompt instructors to start thinking about their strategy for AI use in the context of the broader teaching skill. Activities in beginner skills focus on exploration, reflection, and goal setting for the use of AI in instructional settings.
+    </p>
+    <p style="color: rgba(255,255,255,0.85); margin-bottom: 0.4rem;">
+      <span style="font-weight:700; color:#7ecae3;">Intermediate</span> skills are focused on developing instructor competence in AI use in one or two specific areas of focus within the broader skill. Activities include using AI to complete a teaching task thoughtfully and with full awareness of the benefits and potential pitfalls for that specific use.
+    </p>
+    <p style="color: rgba(255,255,255,0.85);">
+      <span style="font-weight:700; color:#b5d08a;">Advanced</span> skills mark the full integration of AI into the instructor's teaching repertoire. These activities focus on helping the instructor cultivate a practice of using AI strategically to improve teaching and learning in their classes.
+    </p>
+  </div>
+  <div class="main">
+    <div style="height:1.5rem;"></div>
+    <div class="legend">
+      <span style="font-size:12px;font-weight:700;color:var(--gray-dark);text-transform:uppercase;letter-spacing:0.08em;">Proficiency levels →</span>
+      <div class="legend-item"><div class="legend-dot" style="background:#EAAA00;"></div>Basic</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#007396;"></div>Intermediate</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#789D4A;"></div>Advanced</div>
+    </div>
+    <div id="map-root"></div>
+  </div>
+</div><!-- end view-map -->
 
+<!-- DETAIL VIEW -->
 <div id="view-detail" class="view">
   <div class="detail-page-header" id="detail-header"></div>
   <div class="detail-body" id="detail-content"></div>
@@ -244,7 +257,6 @@ window.toggleDomain = function(di) {
 };
 
 function sectionHTML(num, title, items) {
-  // Check if items is just a string (for general text/descriptions)
   if (typeof items === 'string') {
     return `
       <div class="section">
@@ -256,7 +268,6 @@ function sectionHTML(num, title, items) {
       </div>`;
   }
 
-  // Otherwise, treat it as an array of resource objects
   const hasContent = items && items.length > 0;
   const bodyHTML = hasContent
     ? items.map(r => `
