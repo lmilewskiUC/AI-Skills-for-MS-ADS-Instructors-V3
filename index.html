@@ -238,6 +238,8 @@ function arrowSVG(toLevel) {
   return `<div class="arrow-sep"><svg width="22" height="32" viewBox="0 0 22 32"><line x1="1" y1="16" x2="18" y2="16" stroke="${c}" stroke-width="1.5" opacity="0.5"/><polygon points="14,11 21,16 14,21" fill="${c}" opacity="0.6"/></svg></div>`;
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+
 const root = document.getElementById('map-root');
 data.forEach((domain, di) => {
   const levelSet = [...new Set(domain.skills.map(s => s.level))];
@@ -271,6 +273,8 @@ data.forEach((domain, di) => {
   `;
   root.appendChild(card);
 });
+
+}); // end DOMContentLoaded
 
 window.toggleDomain = function(di) {
   const card = document.getElementById(`domain-${di}`);
