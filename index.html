@@ -383,5 +383,16 @@ window.showMap = function() {
   document.getElementById('view-map').classList.add('active');
 };
 </script>
+
+<script>
+  function resizeParent() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ subject: 'lti.frameResize', height: height }, '*');
+  }
+  window.addEventListener('load', resizeParent);
+  window.addEventListener('resize', resizeParent);
+  const observer = new MutationObserver(resizeParent);
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+</script>
 </body>
 </html>
